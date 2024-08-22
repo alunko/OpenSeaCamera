@@ -4,7 +4,7 @@ import net.sourceforge.opencamera.HDRProcessor;
 import net.sourceforge.opencamera.JavaImageFunctions;
 import net.sourceforge.opencamera.JavaImageProcessing;
 import net.sourceforge.opencamera.cameracontroller.RawImage;
-//import net.sourceforge.opencamera.MainActivity;
+import net.sourceforge.opencamera.MainActivity;
 import net.sourceforge.opencamera.MyDebug;
 import net.sourceforge.opencamera.R;
 import net.sourceforge.opencamera.ScriptC_histogram_compute;
@@ -1182,6 +1182,7 @@ public class Preview implements SurfaceHolder.Callback, TextureView.SurfaceTextu
                 if( test_runtime_on_video_stop )
                     throw new RuntimeException();
                 video_recorder.stop();
+                ((MainActivity) applicationInterface.getContext()).getMainUI().setImmersiveMode(false);
                 if( MyDebug.LOG )
                     Log.d(TAG, "done video_recorder.stop()");
             }
@@ -5348,7 +5349,8 @@ public class Preview implements SurfaceHolder.Callback, TextureView.SurfaceTextu
                     Log.d(TAG, "ignore pressing stop video too quickly after start");
             }
             else {
-                stopVideo(false);
+                // ignore screen stop video button
+                // stopVideo(false);
             }
             return;
         }
@@ -5705,6 +5707,8 @@ public class Preview implements SurfaceHolder.Callback, TextureView.SurfaceTextu
             if( MyDebug.LOG )
                 Log.d(TAG, "start video recording");
             startVideoRecording(max_filesize_restart);
+            // hide GUI button while recording video
+            ((MainActivity) applicationInterface.getContext()).getMainUI().setImmersiveMode(true);
             return;
         }
 

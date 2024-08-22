@@ -1399,18 +1399,18 @@ public class MainUI {
                         View takePhotoButton = main_activity.findViewById(R.id.take_photo);
                         takePhotoButton.setVisibility(visibility);
                     }
-                    if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && main_activity.getPreview().isVideoRecording() ) {
-                        View pauseVideoButton = main_activity.findViewById(R.id.pause_video);
-                        pauseVideoButton.setVisibility(visibility);
-                    }
-                    if( main_activity.getPreview().supportsPhotoVideoRecording() && main_activity.getApplicationInterface().usePhotoVideoRecording() && main_activity.getPreview().isVideoRecording() ) {
-                        View takePhotoVideoButton = main_activity.findViewById(R.id.take_photo_when_video_recording);
-                        takePhotoVideoButton.setVisibility(visibility);
-                    }
                     if( main_activity.getApplicationInterface().getGyroSensor().isRecording() ) {
                         View cancelPanoramaButton = main_activity.findViewById(R.id.cancel_panorama);
                         cancelPanoramaButton.setVisibility(visibility);
                     }
+                }
+                if( main_activity.getPreview().supportsPhotoVideoRecording() && main_activity.getApplicationInterface().usePhotoVideoRecording() && main_activity.getPreview().isVideoRecording() ) {
+                    View takePhotoVideoButton = main_activity.findViewById(R.id.take_photo_when_video_recording);
+                    takePhotoVideoButton.setVisibility(visibility);
+                }
+                if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && main_activity.getPreview().isVideoRecording() ) {
+                    View pauseVideoButton = main_activity.findViewById(R.id.pause_video);
+                    pauseVideoButton.setVisibility(visibility);
                 }
                 if( !immersive_mode ) {
                     // make sure the GUI is set up as expected
@@ -2819,7 +2819,11 @@ public class MainUI {
                         boolean done = false;
                         if( keyCode == KeyEvent.KEYCODE_VOLUME_DOWN && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && main_activity.getPreview().isVideoRecording() ) {
                             done = true;
-                            main_activity.pauseVideo();
+                            main_activity.getPreview().stopVideo(false);
+                        }
+                        else if( keyCode == KeyEvent.KEYCODE_VOLUME_UP && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && main_activity.getPreview().isVideoRecording() ) {
+                            done = true;
+                            main_activity.takePicture(true);
                         }
                         if( !done ) {
                             main_activity.takePicture(false);
