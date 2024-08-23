@@ -1,4 +1,4 @@
-fork from OpenCamera v1.53.1
+fork from OpenCamera(https://opencamera.org.uk/)  v1.53.1
 
 # OpenSeaCamera
 
