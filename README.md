@@ -9,8 +9,8 @@ Screen buttons are hidden during video recording to prevent screen operations fr
 Use the volume keys for recording operations.
 
 ## Features
-Changed the list below from Open Camera
+Changed the list below from OpenCamera
 * Hide screen controls while video recording
 * Disable recording stop button while video recording
-* Volume-Up key(while video recording): Take Shapshot Photo
+* Volume-Up key(while video recording): Take Snapshot Photo
 * Volume-Down key(while video recording): Stop video recording
