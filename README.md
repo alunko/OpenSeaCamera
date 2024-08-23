@@ -1,12 +1,14 @@
 fork from OpenCamera v1.53.1
 
-# Camera for recording video underwater
+# OpenSeaCamera
 
-## description
+## Description
+Camera for recording video underwater.
+
 Screen buttons are hidden during video recording to prevent screen operations from being disrupted by water.
 Use the volume keys for recording operations.
 
-## features
+## Features
 Changed the list below from Open Camera
 * Hide screen controls while video recording
 * Disable recording stop button while video recording
