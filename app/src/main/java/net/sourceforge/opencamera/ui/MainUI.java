@@ -2817,13 +2817,20 @@ public class MainUI {
                 switch(volume_keys) {
                     case "volume_take_photo":
                         boolean done = false;
-                        if( keyCode == KeyEvent.KEYCODE_VOLUME_DOWN && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && main_activity.getPreview().isVideoRecording() ) {
-                            done = true;
-                            main_activity.getPreview().stopVideo(false);
+                        if (main_activity.getPreview().isVideoRecording()) {
+                                if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+                                    done = true;
+                                    main_activity.getPreview().stopVideo(false);
+                                } else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+                                    done = true;
+                                    main_activity.takePicture(true);
+                                }
                         }
-                        else if( keyCode == KeyEvent.KEYCODE_VOLUME_UP && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && main_activity.getPreview().isVideoRecording() ) {
-                            done = true;
-                            main_activity.takePicture(true);
+                        else{
+                            if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+                                done = true;
+                                main_activity.clickedSwitchVideo(null);
+                            }
                         }
                         if( !done ) {
                             main_activity.takePicture(false);
